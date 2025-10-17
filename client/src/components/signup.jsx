@@ -26,7 +26,7 @@ const Signup = () => {
         };
 
         try {
-            const res = await axios.post("http://localhost:3000/signup", data);
+            const res = await axios.post("http://localhost:3000/signup", data, { withCredentials: true });
             setResponse(res.data);
             navigate('/home', {
             state: {

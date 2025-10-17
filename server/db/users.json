@@ -31,5 +31,71 @@
     "username": "ae141003",
     "password": "$2b$10$FFX8ywQKjMSP.pgOkGXcZOS.Om1T4At00N8T99QLSoIO15zQxchCi",
     "group": []
+  },
+  {
+    "id": 13,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "02/03/2000",
+    "city": "Calais",
+    "tel": "0782417247sq",
+    "username": "sk020300",
+    "password": "$2b$10$ZJ332RR32TQ4J6tnro5ghuGJcT4Tgl4yiyauORo7MZ7h6yPMRLMeO",
+    "group": []
+  },
+  {
+    "id": 14,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "03/02/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk030204",
+    "password": "$2b$10$uUUzB0JA63gZQmOlalsjx.aQIZi9zFb1FG0OB7vQSR.ZsIQsTBzyW",
+    "group": []
+  },
+  {
+    "id": 15,
+    "firstName": "Soulaimaneqd",
+    "lastName": "Kassimqzd",
+    "dateOfBirth": "03/02/2004",
+    "city": "EL JADIDA",
+    "tel": "06055534",
+    "username": "sk0302041",
+    "password": "$2b$10$c23jmffUKftWM.37zZ31Gen3vsm0.qCusSh3pq2CBbO9x1QZ9MzLq",
+    "group": []
+  },
+  {
+    "id": 16,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIMdd",
+    "dateOfBirth": "03/02/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk0302042",
+    "password": "$2b$10$Rw6.6Dqq4SErLQCfuYATiuzC7W7NhBu8CcBSWyO/mdTE4vTl1veYm",
+    "group": []
+  },
+  {
+    "id": 17,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "03/02/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk0302043",
+    "password": "$2b$10$qvDqPZKTLf8.zjV4wZLjs.jDpXujKAUuHakn/USFXpLmSBzT4kbka",
+    "group": []
+  },
+  {
+    "id": 18,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "03/02/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk0302044",
+    "password": "$2b$10$Phjr37AEuXSG.YX43CL6LOQQZLEwNEs/i.t1H3xwd1ZXo0RSb1mrq",
+    "group": []
   }
 ]

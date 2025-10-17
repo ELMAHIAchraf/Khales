@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from 'react-router-dom';
 
 const Signup = () => {
     const firstNameRef = useRef(null);
@@ -79,6 +79,13 @@ const Signup = () => {
                         required
                         className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-400"
                     />
+
+                    <p className="mt-4 text-center">
+                        Déjà inscrit ?{' '}
+                        <Link to="/" className="text-blue-500 underline">
+                            Se connecter
+                        </Link>
+                    </p>
                     <button
                         type="submit"
                         className="w-full bg-purple-600 text-white font-semibold py-2 rounded hover:bg-purple-700 transition"

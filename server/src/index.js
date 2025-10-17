@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors'); 
 const app = express();
 const corsOptions = {
-    origin: "http://localhost:5174", 
+    origin: "http://localhost:5173", 
     credentials: true
 };
 app.use(cors(corsOptions));
@@ -139,11 +139,11 @@ app.post('/login', (req, res) => {
 
     loginAttempts[username] = 0;
     res.cookie('user', JSON.stringify({
-        id: newUser.id,
-        username: newUser.username,
-        firstName: newUser.firstName,
-        lastName: newUser.lastName,
-        city: newUser.city
+        id: user.id,
+        username: user.username,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        city: user.city
     }), {
         maxAge: 60 * 60 * 1000,
         httpOnly: false,        
@@ -157,3 +157,58 @@ app.post('/login', (req, res) => {
     lastName: user.lastName
   });
 })
+
+
+app.post('/createGroup', (req, res) => {
+    const { name, password, creatorId } = req.body;
+
+    if (!name || !password || !creatorId) {
+        return res.status(400).json({ error: "Group name, password, and creatorId are required." });
+    }
+
+    const groupsPath = path.join(__dirname, '../db/groups.json');
+    let groups = [];
+    try {
+        groups = JSON.parse(fs.readFileSync(groupsPath, 'utf8'));
+    } catch (e) {}
+
+    if (groups.some(g => g.name.toLowerCase() === name.toLowerCase())) {
+        return res.status(400).json({ error: "Group name already exists." });
+    }
+
+    const usersPath = path.join(__dirname, '../db/users.json');
+    let users = [];
+    try {
+        users = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
+    } catch (e) {}
+
+    const creator = users.find(u => u.id === creatorId);
+    if (!creator) {
+        return res.status(400).json({ error: "Creator user not found." });
+    }
+
+
+    const newGroup = {
+        id: groups.length ? Math.max(...groups.map(g => g.id)) + 1 : 1,
+        name,
+        password: password,
+        members: [
+            { userId: creatorId, role: "admin" }
+        ],
+        createdBy: creatorId,
+        createdAt: new Date().toISOString()
+    };
+
+    if (newGroup.members.length > 15) {
+        return res.status(400).json({ error: "A group can have a maximum of 15 members." });
+    }
+    const adminCount = newGroup.members.filter(m => m.role === "admin").length;
+    if (adminCount > 3) {
+        return res.status(400).json({ error: "A group can have up to 3 admins." });
+    }
+
+    groups.push(newGroup);
+    fs.writeFileSync(groupsPath, JSON.stringify(groups, null, 2));
+
+    return res.status(201).json({ message: "Group created successfully", group: newGroup });
+});

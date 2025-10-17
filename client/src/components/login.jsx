@@ -20,7 +20,6 @@ const Login = ({ onLoginSuccess }) => {
 
     try {
       const res = await axios.post("http://localhost:3000/login", data, { withCredentials: true });
-      // Appel du callback pour mettre à jour l'utilisateur connecté
       if (onLoginSuccess) onLoginSuccess(res.data);
       navigate("/home");
     } catch (err) {

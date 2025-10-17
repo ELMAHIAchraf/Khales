@@ -1,3 +1,3 @@
 rm -rf .git
-./server/nodes_modules
-./client/node_modules
+/server/nodes_modules
+/client/node_modules

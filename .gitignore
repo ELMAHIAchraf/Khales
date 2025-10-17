@@ -1,3 +1,4 @@
 rm -rf .git
 /server/nodes_modules
 /client/node_modules
+/server/db/users.json

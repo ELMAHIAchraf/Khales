@@ -28,7 +28,12 @@ const Signup = () => {
         try {
             const res = await axios.post("http://localhost:3000/signup", data);
             setResponse(res.data);
-            navigate('/home')
+            navigate('/home', {
+            state: {
+                username: res.data.username,
+                password: res.data.password,
+            }
+        });
         } catch (err) {
             setError(err.response?.data?.error || "Signup failed");
         }

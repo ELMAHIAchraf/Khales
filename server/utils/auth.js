@@ -35,7 +35,7 @@ export function generateUsername(firstName, lastName, dateOfBirth, users) {
     const base = (
         (firstName[0] || '').toLowerCase() +
         (lastName[0] || '').toLowerCase() +
-        dateOfBirth.replace(/\D/g, '').slice(0, 6)
+        dateOfBirth.replace(/\D/g, '').slice(0, 4)+dateOfBirth.replace(/\D/g, '').slice(6, 8)
     );
     let username = base;
     let suffix = 1;

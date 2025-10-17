@@ -20,5 +20,115 @@
     "username": "se151101",
     "password": "$2b$10$Qw8!rT2zBvL1@pXy",
     "group": []
+  },
+  {
+    "id": 3,
+    "firstName": "Achraf",
+    "lastName": "Elmahi",
+    "dateOfBirth": "14/10/2003",
+    "city": "Calais",
+    "tel": "0760502228",
+    "username": "ae141020",
+    "password": "$2b$10$gsYYWtgYkQZ8RGiVEx00tuEiBjI/te/r63PLLslxtU6yqQiHMdc6m",
+    "group": []
+  },
+  {
+    "id": 4,
+    "firstName": "wissam ",
+    "lastName": "kamrach",
+    "dateOfBirth": "14/10/2003",
+    "city": "maghrib",
+    "tel": "0223512545",
+    "username": "wk141020",
+    "password": "$2b$10$/AsBVJ6ndnmHdHswGLwDi.SSnHNgeNtCfvjeVjmRHkSZjM9b.uZYG",
+    "group": []
+  },
+  {
+    "id": 5,
+    "firstName": "Achraf",
+    "lastName": "Elmahi",
+    "dateOfBirth": "14/10/2003",
+    "city": "Calais",
+    "tel": "0760502228",
+    "username": "ae1410200",
+    "password": "$2b$10$FpMsIY6g6NknV.dGaXsk2.Idi2nd3PJNITWokuY4Icarksrca7MxS",
+    "group": []
+  },
+  {
+    "id": 6,
+    "firstName": "Achraf",
+    "lastName": "Elmahi",
+    "dateOfBirth": "14/10/2003",
+    "city": "Calais",
+    "tel": "0760502228",
+    "username": "ae141000",
+    "password": "$2b$10$jE8F.4qGA4k7xBGA.Q8Wv.aT73ipV/a8W5l1gFlMv5PezdTMQbu/W",
+    "group": []
+  },
+  {
+    "id": 7,
+    "firstName": "Achraf",
+    "lastName": "Elmahi",
+    "dateOfBirth": "14/10/2003",
+    "city": "Calais",
+    "tel": "0760502228",
+    "username": "ae141003",
+    "password": "$2b$10$KJAdE7Nk6GvH.fhR.ztfDuSA3nSULa1frHv3NQ09G9eKexlCZjv.2",
+    "group": []
+  },
+  {
+    "id": 8,
+    "firstName": "Achraf",
+    "lastName": "Elmahi",
+    "dateOfBirth": "14/10/2003",
+    "city": "Calais",
+    "tel": "0760502228",
+    "username": "ae1410031",
+    "password": "$2b$10$NMdUCLn.yAcng7gmWe8X2.YJpb2U169hjqUFjBntJ7QDMHjC99m8K",
+    "group": []
+  },
+  {
+    "id": 9,
+    "firstName": "Achr",
+    "lastName": "Ehi",
+    "dateOfBirth": "04/10/2006",
+    "city": "Cala",
+    "tel": "0765502228",
+    "username": "ae041006",
+    "password": "$2b$10$R3J4Mty9qTOS/u5hxoQ2GeOlfsk17Fcp/yj7yD4NRYuLmQ65HaSIu",
+    "group": []
+  },
+  {
+    "id": 10,
+    "firstName": "achraf",
+    "lastName": "elmahi",
+    "dateOfBirth": "14/10/2003",
+    "city": "Calais",
+    "tel": "0760502228",
+    "username": "ae1410032",
+    "password": "$2b$10$9yAKIrKt1XvgMfQd4ChG3eW2IX9sQOe5eDXsau3kSYCyBy.HE.alK",
+    "group": []
+  },
+  {
+    "id": 11,
+    "firstName": "Achraf",
+    "lastName": "Elmahi",
+    "dateOfBirth": "14/10/2003",
+    "city": "Calais",
+    "tel": "0760502228",
+    "username": "ae1410033",
+    "password": "$2b$10$Q5ZSrWoZrDhguS4jacCDHeWpK64Mm7IDPMI8gGU2Io0s25b6WIXRy",
+    "group": []
+  },
+  {
+    "id": 12,
+    "firstName": "Achraf",
+    "lastName": "Elmahi",
+    "dateOfBirth": "14/10/2003",
+    "city": "Calais",
+    "tel": "0760502228",
+    "username": "ae1410034",
+    "password": "$2b$10$VUmeyCsk2LY9ikeJgIP1g.wB72T0OLso3OrtSH/LQhRo7jEkjdnYm",
+    "group": []
   }
 ]

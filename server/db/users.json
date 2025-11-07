@@ -1,46 +1,35 @@
 [
   {
     "id": 1,
-    "firstName": "Amine",
-    "lastName": "Benali",
-    "dateOfBirth": "03/07/2002",
-    "city": "Casablanca",
-    "tel": "0612345678",
-    "username": "ab030702",
-    "password": "$2b$10$Xy9vL1@pQw3rT6zB",
-    "group": []
-  },
-  {
-    "id": 2,
     "firstName": "Achraf",
     "lastName": "Elmahi",
     "dateOfBirth": "14/10/2003",
     "city": "Calais",
     "tel": "0760502228",
     "username": "ae141003",
-    "password": "$2b$10$ttwwy3UP.y38k28.m6H/TeVxcBxYvUDB.ndk/qEkzNysOZTYESfri",
+    "password": "$2b$10$RtUr6WvzPYgWmcm8Lq56m.CM99ss7KPXQmwEiE4QXNsXgUakxCtvC",
+    "group": []
+  },
+  {
+    "id": 2,
+    "firstName": "Sara",
+    "lastName": "Benali",
+    "dateOfBirth": "05/03/1999",
+    "city": "Lille",
+    "tel": "0612345678",
+    "username": "sb050399",
+    "password": "$2b$10$H1k9v7xZpQe2b4nKJr6sMeY8uV0qz1tR4aBcD5EfGhIjKlmNoPqRS",
     "group": []
   },
   {
     "id": 3,
-    "firstName": "Soulaimane",
-    "lastName": "KASSIM",
-    "dateOfBirth": "02/03/2004",
-    "city": "Calais",
-    "tel": "0782417247",
-    "username": "sk020304",
-    "password": "$2b$10$9fCEajWoJnbFqBLHL9yd1eE8cqLlmOgmxXFMTqhLaXf7AuM4/c1Qa",
-    "group": []
-  },
-  {
-    "id": 4,
-    "firstName": "Soulaimane",
-    "lastName": "Kassim",
-    "dateOfBirth": "03/02/2004",
-    "city": "EL JADIDA",
-    "tel": "0605553400",
-    "username": "sk030204",
-    "password": "$2b$10$S/xctmeqdDqJX9kPTlMxJOI4CPeZHRaoUa8F/ZV51Xnhht8ywF1Lm",
+    "firstName": "Youssef",
+    "lastName": "Amrani",
+    "dateOfBirth": "12/02/2000",
+    "city": "Lyon",
+    "tel": "0678901234",
+    "username": "ya120200",
+    "password": "$2b$10$Z9x8w7v6u5t4s3r2q1p0oNMbVcXyZaBcDeFgHiJkLmNoPqRsTuVWx",
     "group": []
   }
 ]

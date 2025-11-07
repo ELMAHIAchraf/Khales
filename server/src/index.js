@@ -381,57 +381,40 @@ app.post('/createOuting', (req, res) => {
     });
   });
 
-
-  // ...existing code...
-
-// Get outings for a group (with members' names)
-app.get('/getOutings/:groupId', (req, res) => {
-    const groupId = parseInt(req.params.groupId, 10);
-
+  app.get('/groupOutings/:groupName', (req, res) => {
+    const { groupName } = req.params;
+  
     const groupsPath = path.join(__dirname, '../db/groups.json');
     const usersPath = path.join(__dirname, '../db/users.json');
-
+  
     let groups = [];
     let users = [];
     try {
-        groups = JSON.parse(fs.readFileSync(groupsPath, 'utf8'));
+      groups = JSON.parse(fs.readFileSync(groupsPath, 'utf8'));
+      users = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
     } catch (e) {
-        return res.status(500).json({ error: "Impossible de lire les groupes." });
+      return res.status(500).json({ error: "Impossible de lire les fichiers." });
     }
-    try {
-        users = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
-    } catch (e) {
-        return res.status(500).json({ error: "Impossible de lire les utilisateurs." });
-    }
-
-    const group = groups.find(g => g.id === groupId);
-    if (!group) {
-        return res.status(404).json({ error: "Groupe non trouvé." });
-    }
-
-    // Get members' names for the group
-    const memberMap = {};
-    group.members.forEach(m => {
-        const user = users.find(u => u.id === m.userId);
-        memberMap[m.userId] = user ? `${user.firstName} ${user.lastName}` : "Unknown";
-    });
-
-    // Format outings: add members with spent: null (since not tracked in your data)
-   // ...existing code...
-    const outings = (group.sorties || []).map(outing => ({
-        outingName: outing.outingName,
-        total: outing.total,
-        createdAt: outing.createdAt,
-        members: (outing.members || []).map(m => ({
-            userId: m.userId,
-            amountSpent: m.amountSpent
-        }))
-    }));
-// ...existing code...
-
-    res.json({ outings });
-});
-
-// ...existing code...
   
+    const group = groups.find(
+      g => typeof g.name === "string" && g.name.trim().toLowerCase() === groupName.trim().toLowerCase()
+    );
+  
+    if (!group) return res.status(404).json({ error: "Groupe non trouvé." });
+  
+    // Transforme les sorties pour inclure le nom et le montant dépensé
+    const outings = group.sorties.map(outing => ({
+      outingName: outing.outingName,
+      total: outing.total,
+      members: outing.members.map(m => {
+        const user = users.find(u => u.id === m.userId);
+        return {
+          name: user ? `${user.firstName} ${user.lastName}` : "Unknown",
+          spent: m.amountSpent
+        };
+      })
+    }));
+  
+    res.json(outings);
+  });
   

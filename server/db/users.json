@@ -31,5 +31,82 @@
     "username": "ae141003",
     "password": "$2b$10$oS4D4jShPEkTZl74lrJlU.ndbUsqj9jQRkvwQWIopDw1Z64rFZEP2",
     "group": []
+  },
+  {
+    "id": 4,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "03/02/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk030204",
+    "password": "$2b$10$oxVCb0h3p3pi.x51OpjUrOO8Hn51LkACSzC2GASDbN7dzw1KDuVPm",
+    "group": []
+  },
+  {
+    "id": 5,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "03/02/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk0302041",
+    "password": "$2b$10$Ji.3mPeXiC0nlYykMIFOMuxkHxqUusrY/7poRaO2bjGgM5PpJjfy2",
+    "group": []
+  },
+  {
+    "id": 6,
+    "firstName": "wissam",
+    "lastName": "kam",
+    "dateOfBirth": "01/01/2001",
+    "city": "casa",
+    "tel": "123456789",
+    "username": "wk010101",
+    "password": "$2b$10$Ju8c3k33so1ZtKSFIe2AbOee3uuk.GpUONaGrfasrJf7tWNEOS/hG",
+    "group": []
+  },
+  {
+    "id": 7,
+    "firstName": "Soulaimanezz",
+    "lastName": "KASSIMzz",
+    "dateOfBirth": "03/02/2009",
+    "city": "Calaisa",
+    "tel": "078247247",
+    "username": "sk030209",
+    "password": "$2b$10$Lamoe4KAAHhSP//ZATVOBuw4XFJAggyxzvP4VErT8iP8J/MWcbsZm",
+    "group": []
+  },
+  {
+    "id": 8,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "03/02/2004",
+    "city": "Calaisa",
+    "tel": "0782417247",
+    "username": "sk0302042",
+    "password": "$2b$10$cFapVy3jGxuXHGHqSeNVeuFA1MzOJpira8W6s8DHhB1niQ2.Js.y6",
+    "group": []
+  },
+  {
+    "id": 9,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "03/02/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk0302043",
+    "password": "$2b$10$V9EJUtvu2WfUOgRymkgvl.7d7H9Xq.4eWj3gHorgfNaWnXymbGMhi",
+    "group": []
+  },
+  {
+    "id": 10,
+    "firstName": "Soulaimaneeazd",
+    "lastName": "KASSIMda",
+    "dateOfBirth": "03/02/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk0302044",
+    "password": "$2b$10$id5xujpcIiDbNekCzkpp/.oJwdSpHD0vbA4Nfm7DXHOBTfI20C3Pm",
+    "group": []
   }
 ]

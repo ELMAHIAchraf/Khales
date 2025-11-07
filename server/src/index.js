@@ -99,6 +99,7 @@ app.post('/signup', (req, res) => {
 
 
 const MAX_ATTEMPTS = 3;
+const BLOCK_DURATION = 5 * 60 * 1000; // 5 minutes de blocage
 
 const loginAttempts = {};
 
@@ -123,21 +124,38 @@ app.post('/login', (req, res) => {
     return res.status(401).json({ message: "Nom d'utilisateur ou mot de passe incorrect." });
   }
 
-  if (!loginAttempts[username]) loginAttempts[username] = 0;
+  if (!loginAttempts[username]) {
+    loginAttempts[username] = { count: 0, blockedUntil: null };
+  }
+  const now = Date.now();
 
-  if (loginAttempts[username] >= MAX_ATTEMPTS) {
-    return res.status(403).json({ message: "Compte bloqué après 3 tentatives échouées." });
+  // Vérifier si l'utilisateur est bloqué
+  if (loginAttempts[username].blockedUntil && now < loginAttempts[username].blockedUntil) {
+    const remaining = Math.ceil((loginAttempts[username].blockedUntil - now) / 1000);
+    return res.status(403).json({
+      message: `Nombre maximal de tentatives dépassé. Réessayez dans ${remaining} secondes.`
+    });
   }
 
   const passwordMatch = bcrypt.compareSync(password, user.password);
 
   if (!passwordMatch) {
-    loginAttempts[username] += 1;
-    const attemptsLeft = MAX_ATTEMPTS - loginAttempts[username];
-    return res.status(401).json({ message: `Mot de passe incorrect. Tentatives restantes: ${attemptsLeft}` });
+    loginAttempts[username].count++;
+
+    if (loginAttempts[username].count >= MAX_ATTEMPTS) {
+      loginAttempts[username].blockedUntil = now + BLOCK_DURATION;
+      return res.status(403).json({ message: "Nombre maximal de tentatives dépassé. Accès bloqué." });
+    }
+
+    const attemptsLeft = MAX_ATTEMPTS - loginAttempts[username].count;
+    return res.status(401).json({
+      message: `Identifiants incorrects. Tentatives restantes : ${attemptsLeft}`
+    });
   }
 
-    loginAttempts[username] = 0;
+  // Si connexion réussie
+  loginAttempts[username] = { count: 0, blockedUntil: null };
+
     res.cookie('user', JSON.stringify({
         id: user.id,
         username: user.username,

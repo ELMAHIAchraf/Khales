@@ -11,5 +11,57 @@
     ],
     "createdBy": 3,
     "createdAt": "2025-10-17T11:37:07.689Z"
+  },
+  {
+    "id": 2,
+    "name": "pipo",
+    "password": "pipizz",
+    "members": [
+      {
+        "userId": 4,
+        "role": "admin"
+      }
+    ],
+    "createdBy": 4,
+    "createdAt": "2025-10-17T11:49:06.979Z"
+  },
+  {
+    "id": 3,
+    "name": "pipoz",
+    "password": "pipizz",
+    "members": [
+      {
+        "userId": 4,
+        "role": "admin"
+      }
+    ],
+    "createdBy": 4,
+    "createdAt": "2025-10-17T11:49:25.103Z"
+  },
+  {
+    "id": 4,
+    "name": "sss",
+    "password": "ddd",
+    "members": [
+      {
+        "userId": 5,
+        "role": "admin"
+      }
+    ],
+    "createdBy": 5,
+    "createdAt": "2025-11-07T09:35:29.887Z"
+  },
+  {
+    "id": 5,
+    "name": "Travelzé",
+    "password": "shshhs",
+    "members": [
+      {
+        "userId": 7,
+        "role": "admin"
+      }
+    ],
+    "createdBy": 7,
+    "createdAt": "2025-11-07T09:58:46.851Z"
   }
 ]

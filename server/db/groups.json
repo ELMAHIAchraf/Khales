@@ -260,5 +260,30 @@
     ],
     "createdBy": 4,
     "createdAt": "2025-11-07T15:43:53.512Z"
+  },
+  {
+    "id": 15,
+    "name": "sksksk",
+    "password": "sksksk",
+    "members": [
+      {
+        "userId": 4,
+        "role": "admin"
+      }
+    ],
+    "sorties": [
+      {
+        "outingName": "sksksk",
+        "total": 22,
+        "members": [
+          {
+            "userId": 4,
+            "amountSpent": 0
+          }
+        ]
+      }
+    ],
+    "createdBy": 4,
+    "createdAt": "2025-11-07T16:11:14.276Z"
   }
 ]

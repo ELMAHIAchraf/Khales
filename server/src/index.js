@@ -354,16 +354,19 @@ app.post('/createOuting', (req, res) => {
       return res.status(404).json({ error: "Groupe non trouvé." });
     }
   
-    // S'assurer que `group.sorties` est bien un tableau
+    // S'assurer que group.sorties est bien un tableau
     if (!Array.isArray(group.sorties)) {
       group.sorties = [];
     }
   
     // Créer une nouvelle sortie
     const newOuting = {
-      outingName,
-      total,
-      createdAt: new Date().toISOString()
+        outingName,
+        total,
+        members: group.members.map(m => ({
+            userId: m.userId,
+            amountSpent: 0
+        }))
     };
   
     // Ajouter la sortie au tableau des sorties du groupe
@@ -377,5 +380,58 @@ app.post('/createOuting', (req, res) => {
       group
     });
   });
+
+
+  // ...existing code...
+
+// Get outings for a group (with members' names)
+app.get('/getOutings/:groupId', (req, res) => {
+    const groupId = parseInt(req.params.groupId, 10);
+
+    const groupsPath = path.join(__dirname, '../db/groups.json');
+    const usersPath = path.join(__dirname, '../db/users.json');
+
+    let groups = [];
+    let users = [];
+    try {
+        groups = JSON.parse(fs.readFileSync(groupsPath, 'utf8'));
+    } catch (e) {
+        return res.status(500).json({ error: "Impossible de lire les groupes." });
+    }
+    try {
+        users = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
+    } catch (e) {
+        return res.status(500).json({ error: "Impossible de lire les utilisateurs." });
+    }
+
+    const group = groups.find(g => g.id === groupId);
+    if (!group) {
+        return res.status(404).json({ error: "Groupe non trouvé." });
+    }
+
+    // Get members' names for the group
+    const memberMap = {};
+    group.members.forEach(m => {
+        const user = users.find(u => u.id === m.userId);
+        memberMap[m.userId] = user ? `${user.firstName} ${user.lastName}` : "Unknown";
+    });
+
+    // Format outings: add members with spent: null (since not tracked in your data)
+   // ...existing code...
+    const outings = (group.sorties || []).map(outing => ({
+        outingName: outing.outingName,
+        total: outing.total,
+        createdAt: outing.createdAt,
+        members: (outing.members || []).map(m => ({
+            userId: m.userId,
+            amountSpent: m.amountSpent
+        }))
+    }));
+// ...existing code...
+
+    res.json({ outings });
+});
+
+// ...existing code...
   
   

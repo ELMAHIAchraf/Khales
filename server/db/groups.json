@@ -1,20 +1,19 @@
 [
   {
     "id": 1,
-    "name": "aaa",
-    "password": "ddd",
+    "name": "test",
+    "password": "test",
     "members": [
       {
-        "userId": 22,
+        "userId": 2,
         "role": "admin"
       }
     ],
     "sorties": {
       "members": [],
-      "outingName": "blz",
       "total": 0
     },
-    "createdBy": 22,
-    "createdAt": "2025-11-07T13:22:03.100Z"
-}
+    "createdBy": 2,
+    "createdAt": "2025-11-07T15:06:14.295Z"
+  }
 ]

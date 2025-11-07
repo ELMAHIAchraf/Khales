@@ -213,12 +213,7 @@ app.post('/createGroup', (req, res) => {
         members: [
             { userId: creatorId, role: "admin" }
         ],
-        sorties: {
-            members: [
-                
-            ],
-            total: 0
-        },
+        sorties: [],
         createdBy: creatorId,
         createdAt: new Date().toISOString()
     };
@@ -330,43 +325,6 @@ app.get('/userGroups/:userId', (req, res) => {
 
 
 
-app.get('/userGroups/:userId', (req, res) => {
-    const userId = parseInt(req.params.userId, 10);
-
-    const groupsPath = path.join(__dirname, '../db/groups.json');
-    const usersPath = path.join(__dirname, '../db/users.json');
-
-    let groups = [];
-    let users = [];
-    try {
-        groups = JSON.parse(fs.readFileSync(groupsPath, 'utf8'));
-    } catch (e) {}
-    try {
-        users = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
-    } catch (e) {}
-
-    const userGroups = groups
-        .filter(group => group.members.some(m => m.userId === userId))
-        .map(group => {
-            const userMember = group.members.find(m => m.userId === userId);
-            const members = group.members.map(m => {
-                const memberUser = users.find(u => u.id === m.userId);
-                return {
-                    userId: m.userId,
-                    name: memberUser ? `${memberUser.firstName} ${memberUser.lastName}` : "Unknown",
-                    role: m.role
-                };
-            });
-            return {
-                groupId: group.id,
-                groupName: group.name,
-                yourRole: userMember ? userMember.role : null,
-                members
-            };
-        });
-
-    res.json({ groups: userGroups });
-});
 
 app.post('/logout', (req, res) => {
     res.clearCookie('user');
@@ -375,55 +333,43 @@ app.post('/logout', (req, res) => {
 
 app.post('/createOuting', (req, res) => {
     const { groupName, outingName, total } = req.body;
-    const userCookie = req.cookies.user;
-  
-    if (!userCookie) return res.status(401).json({ error: "Non authentifié" });
-    const userId = JSON.parse(userCookie).id;
-  
+
+    // Validate input
+    if (
+        typeof groupName !== "string" ||
+        typeof outingName !== "string" ||
+        typeof total !== "number" ||
+        !groupName.trim() ||
+        !outingName.trim()
+    ) {
+        return res.status(400).json({ error: "Group name, outing name, and total are required." });
+    }
+
     const groupsPath = path.join(__dirname, '../db/groups.json');
     let groups = [];
     try {
-      groups = JSON.parse(fs.readFileSync(groupsPath, 'utf8'));
+        groups = JSON.parse(fs.readFileSync(groupsPath, 'utf8'));
     } catch (e) {
-      return res.status(500).json({ error: "Impossible de lire les groupes" });
+        return res.status(500).json({ error: "Impossible de lire les groupes" });
     }
-  
-    // Trouver le groupe
-    const group = groups.find(g => g.name === groupName);
-    if (!group) return res.status(404).json({ error: "Groupe non trouvé" });
-  
-    // Vérifier que l'utilisateur est admin
-    const member = group.members.find(m => m.userId === userId);
-    if (!member || member.role !== "admin") {
-      return res.status(403).json({ error: "Seul l'admin peut créer une sortie" });
+
+    // Find the group by name (case-insensitive, trimmed)
+    const group = groups.find(
+        g => typeof g.name === "string" && g.name.trim().toLowerCase() === groupName.trim().toLowerCase()
+    );
+    if (!group) {
+        return res.status(404).json({ error: "Invalid group name." });
     }
-  
-    // Initialiser la section sorties si elle n'existe pas
-    if (!group.sorties) {
-      group.sorties = { members: [], total: 0 };
-    }
-  
-    // Vérifier nom unique de sortie
-    if (group.sorties.members.some(m => m.name === outingName)) {
-      return res.status(400).json({ error: "Nom de sortie déjà utilisé pour ce groupe" });
-    }
-  
-    // Créer la sortie
-    const newOutingMembers = group.members.map(m => ({
-      userId: m.userId,
-      participationArgent: m.role === "admin" ? "admin" : null,
-      status: "Unpaid"
-    }));
-  
-    group.sorties.members.push(...newOutingMembers);
-    group.sorties.total = total;
-  
-    // Sauvegarder les groupes
+
+    // Update the outing name and add to total
+    group.sorties.outingName = outingName;
+    group.sorties.total += total;
+
+    // Save changes
     fs.writeFileSync(groupsPath, JSON.stringify(groups, null, 2));
-  
-    res.status(201).json({
-      message: "Sortie créée avec succès",
-      group
+
+    res.status(200).json({
+        message: "Outing added successfully.",
+        group
     });
-  });
-  
+});

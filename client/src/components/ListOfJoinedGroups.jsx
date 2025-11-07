@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import OutingsListModal from "./OutingsListModal.jsx";
 
 const getCookie = (name) => {
   const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
@@ -8,8 +9,6 @@ const getCookie = (name) => {
 
 const ListOfJoinedGroups = ({ groups }) => {
   let userId = null;
-  console.log(groups);
-  
   try {
     const userCookie = getCookie("user");
     if (userCookie) {
@@ -18,6 +17,14 @@ const ListOfJoinedGroups = ({ groups }) => {
     }
   } catch (e) {}
 
+  const [showModal, setShowModal] = useState(false);
+  const [selectedGroup, setSelectedGroup] = useState(null);
+
+  const handleGroupClick = (group) => {
+    setSelectedGroup(group);
+    setShowModal(true);
+  };
+
   return (
     <div className="max-w-xl mx-auto mt-8">
       <h2 className="text-xl font-bold mb-4">Groups You Joined</h2>
@@ -25,7 +32,11 @@ const ListOfJoinedGroups = ({ groups }) => {
         <div className="text-gray-500">You have not joined any groups yet.</div>
       ) : (
         groups.map((group) => (
-          <div key={group.groupId} className="mb-6 border rounded p-4 shadow">
+          <div
+            key={group.groupId}
+            className="mb-6 border rounded p-4 shadow cursor-pointer hover:bg-purple-50 transition"
+            onClick={() => handleGroupClick(group)}
+          >
             <div className="mb-2">
               <span className="font-semibold text-purple-700">{group.groupName}</span>
               <span className="ml-2 px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs">
@@ -51,6 +62,14 @@ const ListOfJoinedGroups = ({ groups }) => {
             </div>
           </div>
         ))
+      )}
+      {/* Outing Modal for selected group */}
+      {showModal && (
+        <OutingsListModal
+          open={showModal}
+          onClose={() => setShowModal(false)}
+          group={selectedGroup}
+        />
       )}
     </div>
   );

@@ -361,9 +361,12 @@ app.post('/createOuting', (req, res) => {
   
     // Créer une nouvelle sortie
     const newOuting = {
-      outingName,
-      total,
-      createdAt: new Date().toISOString()
+        outingName,
+        total,
+        members: group.members.map(m => ({
+            userId: m.userId,
+            amountSpent: 0
+        }))
     };
   
     // Ajouter la sortie au tableau des sorties du groupe

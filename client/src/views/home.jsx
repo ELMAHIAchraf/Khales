@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import GroupForm from '../components/GroupForm.jsx'
+import GroupForm from '../components/groupForm.jsx'
 import { JoinGroupForm } from '../components/joinGroupForm.jsx'
 import ListOfJoinedGroups from '../components/ListOfJoinedGroups.jsx'
 import SimpleModal from '../components/SimpleModal.jsx'
+import OutingForm from '../components/outingForm.jsx'
 
 export const Home = () => {
   const location = useLocation();
@@ -13,6 +14,7 @@ export const Home = () => {
   const [groups, setGroups] = useState([]);
   const [showSignupPopup, setShowSignupPopup] = useState(false);
   const [signupInfo, setSignupInfo] = useState({ username: "", password: "" });
+  const [selectedGroupId, setSelectedGroupId] = useState(null);
 
   // Fetch groups for the user
   const fetchGroups = () => {
@@ -89,6 +91,20 @@ export const Home = () => {
           Join Group
         </button>
         <button
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+          onClick={() => {
+            if (groups.length === 0) {
+              alert("Vous devez d'abord créer ou rejoindre un groupe.");
+              return;
+            }
+            const selectedGroup = groups[0]; // par exemple
+            setSelectedGroupId(selectedGroup.name);
+            handleOpenPopup('outing');
+          }}
+        >
+          Ajouter sortie
+        </button>
+        <button
           className="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-600 transition"
           onClick={handleLogout}
         >
@@ -99,6 +115,7 @@ export const Home = () => {
       <SimpleModal open={showPopup} onClose={handleClosePopup}>
         {popupContent === 'create' && <GroupForm onSuccess={handleGroupChange} />}
         {popupContent === 'join' && <JoinGroupForm onSuccess={handleGroupChange} />}
+        {popupContent === 'outing' && <OutingForm groups={groups} onSuccess={handleGroupChange}/>}
       </SimpleModal>
 
       <SimpleModal open={showSignupPopup} onClose={handleCloseSignupPopup}>

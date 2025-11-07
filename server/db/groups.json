@@ -7,9 +7,30 @@
       {
         "userId": 3,
         "role": "admin"
+      },
+      {
+        "userId": 4,
+        "role": "member"
       }
     ],
     "createdBy": 3,
     "createdAt": "2025-10-17T11:37:07.689Z"
+  },
+  {
+    "id": 2,
+    "name": "Test",
+    "password": "test",
+    "members": [
+      {
+        "userId": 4,
+        "role": "admin"
+      },
+      {
+        "userId": 3,
+        "role": "member"
+      }
+    ],
+    "createdBy": 4,
+    "createdAt": "2025-11-07T10:51:28.711Z"
   }
 ]

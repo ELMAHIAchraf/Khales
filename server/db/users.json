@@ -29,7 +29,20 @@
     "city": "Calais",
     "tel": "0760502228",
     "username": "ae141003",
-    "password": "$2b$10$oS4D4jShPEkTZl74lrJlU.ndbUsqj9jQRkvwQWIopDw1Z64rFZEP2",
+    "password": "$2b$10$zIxcpUBHA8KUOi.8/9PM0OLZsC2dljIw.ZUnwxvXz5zPiQkI0RCWy",
+    "group": [
+      2
+    ]
+  },
+  {
+    "id": 4,
+    "firstName": "Wissam",
+    "lastName": "Kamrach",
+    "dateOfBirth": "04/10/2006",
+    "city": "casa",
+    "tel": "06478596",
+    "username": "wk041006",
+    "password": "$2b$10$1CHTDTSyMj4XY8C1QETPtebKki8463HR5U5ZTfCdtys9DkhM6G8qO",
     "group": []
   }
 ]

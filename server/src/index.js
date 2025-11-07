@@ -212,3 +212,139 @@ app.post('/createGroup', (req, res) => {
 
     return res.status(201).json({ message: "Group created successfully", group: newGroup });
 });
+
+
+
+app.post('/joinGroup', (req, res) => {
+    const { groupName, password, userId } = req.body;
+
+    if (!groupName || !password || !userId) {
+        return res.status(400).json({ error: "Group name, password, and userId are required." });
+    }
+
+    const groupsPath = path.join(__dirname, '../db/groups.json');
+    let groups = [];
+    try {
+        groups = JSON.parse(fs.readFileSync(groupsPath, 'utf8'));
+    } catch (e) {}
+
+    const group = groups.find(
+        g => g.name.toLowerCase() === groupName.toLowerCase()
+    );
+    if (!group || group.password !== password) {
+        return res.status(400).json({ error: "Invalid credentials" });
+    }
+
+    if (group.members.length >= 3) {
+        return res.status(400).json({ error: "Group full" });
+    }
+
+    if (group.members.some(m => m.userId === userId)) {
+        return res.status(400).json({ error: "You are already a member of this group." });
+    }
+
+    group.members.push({ userId, role: "member" });
+
+    fs.writeFileSync(groupsPath, JSON.stringify(groups, null, 2));
+
+    const usersPath = path.join(__dirname, '../db/users.json');
+    let users = [];
+    try {
+        users = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
+    } catch (e) {}
+
+    const user = users.find(u => u.id === userId);
+    if (user) {
+        if (!user.group) user.group = [];
+        if (!user.group.includes(group.id)) {
+            user.group.push(group.id);
+            fs.writeFileSync(usersPath, JSON.stringify(users, null, 2));
+        }
+    }
+
+    return res.status(200).json({ message: "You have joined the group successfully." });
+});
+
+
+app.get('/userGroups/:userId', (req, res) => {
+    const userId = parseInt(req.params.userId, 10);
+
+    const groupsPath = path.join(__dirname, '../db/groups.json');
+    const usersPath = path.join(__dirname, '../db/users.json');
+
+    let groups = [];
+    let users = [];
+    try {
+        groups = JSON.parse(fs.readFileSync(groupsPath, 'utf8'));
+    } catch (e) {}
+    try {
+        users = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
+    } catch (e) {}
+
+    const userGroups = groups
+        .filter(group => group.members.some(m => m.userId === userId))
+        .map(group => {
+            const userMember = group.members.find(m => m.userId === userId);
+            const members = group.members.map(m => {
+                const memberUser = users.find(u => u.id === m.userId);
+                return {
+                    userId: m.userId,
+                    name: memberUser ? `${memberUser.firstName} ${memberUser.lastName}` : "Unknown",
+                    role: m.role
+                };
+            });
+            return {
+                groupId: group.id,
+                groupName: group.name,
+                yourRole: userMember ? userMember.role : null,
+                members
+            };
+        });
+
+    res.json({ groups: userGroups });
+});
+
+
+
+app.get('/userGroups/:userId', (req, res) => {
+    const userId = parseInt(req.params.userId, 10);
+
+    const groupsPath = path.join(__dirname, '../db/groups.json');
+    const usersPath = path.join(__dirname, '../db/users.json');
+
+    let groups = [];
+    let users = [];
+    try {
+        groups = JSON.parse(fs.readFileSync(groupsPath, 'utf8'));
+    } catch (e) {}
+    try {
+        users = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
+    } catch (e) {}
+
+    const userGroups = groups
+        .filter(group => group.members.some(m => m.userId === userId))
+        .map(group => {
+            const userMember = group.members.find(m => m.userId === userId);
+            const members = group.members.map(m => {
+                const memberUser = users.find(u => u.id === m.userId);
+                return {
+                    userId: m.userId,
+                    name: memberUser ? `${memberUser.firstName} ${memberUser.lastName}` : "Unknown",
+                    role: m.role
+                };
+            });
+            return {
+                groupId: group.id,
+                groupName: group.name,
+                yourRole: userMember ? userMember.role : null,
+                members
+            };
+        });
+
+    res.json({ groups: userGroups });
+});
+
+app.post('/logout', (req, res) => {
+    res.clearCookie('user');
+    res.status(200).json({ message: "Logged out successfully." });
+});

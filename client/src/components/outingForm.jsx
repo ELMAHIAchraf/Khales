@@ -18,54 +18,34 @@ const OutingForm = ({ groups, onSuccess }) => {
     e.preventDefault();
     setError("");
     setSuccess("");
-
+  
     if (!groupName || !outingName || !totalAmount) {
       setError("Tous les champs sont requis.");
       return;
     }
-
-    // Récupération de l'utilisateur
-    const userCookie = document.cookie.split('user=')[1];
-    if (!userCookie) {
-      setError("Utilisateur non authentifié.");
-      return;
-    }
-    const user = JSON.parse(decodeURIComponent(userCookie));
-
-    // Vérifie que le groupe existe et que l'utilisateur est admin
-    const group = groups.find(
-      g =>
-        g.name &&
-        g.name.trim() === groupName.trim() &&
-        g.members &&
-        g.members.some(m => Number(m.userId) === Number(user.id) && m.role === "admin")
-    );
-
-    if (!group) {
-      setError("Nom de groupe invalide ou vous n'êtes pas admin de ce groupe.");
-      return;
-    }
-
+  
     try {
       const res = await axios.post(
         "http://localhost:3000/createOuting",
         {
-          groupName: group.name, // send groupName, not groupId
-          outingName,
-          total: parseFloat(totalAmount) // send as 'total'
+          groupName: groupName.trim(),
+          outingName: outingName.trim(),
+          total: parseFloat(totalAmount)
         },
         { withCredentials: true }
       );
-
+  
       setSuccess(res.data.message);
       setGroupName("");
       setOutingName("");
       setTotalAmount("");
-      if (onSuccess) onSuccess(res.data.outing);
+      if (onSuccess) onSuccess(res.data.group);
     } catch (err) {
+      console.error(err);
       setError(err.response?.data?.error || "Impossible de créer la sortie");
     }
   };
+  
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto mt-4">

@@ -20,5 +20,27 @@
     "username": "ae141003",
     "password": "$2b$10$ttwwy3UP.y38k28.m6H/TeVxcBxYvUDB.ndk/qEkzNysOZTYESfri",
     "group": []
+  },
+  {
+    "id": 3,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "02/03/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk020304",
+    "password": "$2b$10$9fCEajWoJnbFqBLHL9yd1eE8cqLlmOgmxXFMTqhLaXf7AuM4/c1Qa",
+    "group": []
+  },
+  {
+    "id": 4,
+    "firstName": "Soulaimane",
+    "lastName": "Kassim",
+    "dateOfBirth": "03/02/2004",
+    "city": "EL JADIDA",
+    "tel": "0605553400",
+    "username": "sk030204",
+    "password": "$2b$10$S/xctmeqdDqJX9kPTlMxJOI4CPeZHRaoUa8F/ZV51Xnhht8ywF1Lm",
+    "group": []
   }
 ]

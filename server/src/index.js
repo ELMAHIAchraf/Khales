@@ -323,9 +323,6 @@ app.get('/userGroups/:userId', (req, res) => {
     res.json({ groups: userGroups });
 });
 
-
-
-
 app.post('/logout', (req, res) => {
     res.clearCookie('user');
     res.status(200).json({ message: "Logged out successfully." });
@@ -333,43 +330,52 @@ app.post('/logout', (req, res) => {
 
 app.post('/createOuting', (req, res) => {
     const { groupName, outingName, total } = req.body;
-
-    // Validate input
-    if (
-        typeof groupName !== "string" ||
-        typeof outingName !== "string" ||
-        typeof total !== "number" ||
-        !groupName.trim() ||
-        !outingName.trim()
-    ) {
-        return res.status(400).json({ error: "Group name, outing name, and total are required." });
+  
+    if (!groupName || !outingName || typeof total !== "number") {
+      return res.status(400).json({ error: "Nom du groupe, nom de sortie et total sont requis." });
     }
-
+  
     const groupsPath = path.join(__dirname, '../db/groups.json');
     let groups = [];
+  
+    // Lecture du fichier JSON
     try {
-        groups = JSON.parse(fs.readFileSync(groupsPath, 'utf8'));
+      groups = JSON.parse(fs.readFileSync(groupsPath, 'utf8'));
     } catch (e) {
-        return res.status(500).json({ error: "Impossible de lire les groupes" });
+      return res.status(500).json({ error: "Impossible de lire les groupes." });
     }
-
-    // Find the group by name (case-insensitive, trimmed)
+  
+    // Trouver le groupe correspondant par nom
     const group = groups.find(
-        g => typeof g.name === "string" && g.name.trim().toLowerCase() === groupName.trim().toLowerCase()
+      g => typeof g.name === "string" && g.name.trim().toLowerCase() === groupName.trim().toLowerCase()
     );
+  
     if (!group) {
-        return res.status(404).json({ error: "Invalid group name." });
+      return res.status(404).json({ error: "Groupe non trouvé." });
     }
-
-    // Update the outing name and add to total
-    group.sorties.outingName = outingName;
-    group.sorties.total += total;
-
-    // Save changes
+  
+    // S'assurer que `group.sorties` est bien un tableau
+    if (!Array.isArray(group.sorties)) {
+      group.sorties = [];
+    }
+  
+    // Créer une nouvelle sortie
+    const newOuting = {
+      outingName,
+      total,
+      createdAt: new Date().toISOString()
+    };
+  
+    // Ajouter la sortie au tableau des sorties du groupe
+    group.sorties.push(newOuting);
+  
+    // Sauvegarder les modifications dans le fichier
     fs.writeFileSync(groupsPath, JSON.stringify(groups, null, 2));
-
-    res.status(200).json({
-        message: "Outing added successfully.",
-        group
+  
+    return res.status(201).json({
+      message: "Sortie enregistrée avec succès.",
+      group
     });
-});
+  });
+  
+  

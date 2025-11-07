@@ -98,6 +98,7 @@ export const Home = () => {
               return;
             }
             const selectedGroup = groups[0]; // par exemple
+            
             setSelectedGroupId(selectedGroup.name);
             handleOpenPopup('outing');
           }}

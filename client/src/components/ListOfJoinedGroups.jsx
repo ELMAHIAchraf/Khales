@@ -8,6 +8,8 @@ const getCookie = (name) => {
 
 const ListOfJoinedGroups = ({ groups }) => {
   let userId = null;
+  console.log(groups);
+  
   try {
     const userCookie = getCookie("user");
     if (userCookie) {

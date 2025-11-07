@@ -34,8 +34,11 @@ const OutingForm = ({ groups, onSuccess }) => {
 
     // Vérifie que le groupe existe et que l'utilisateur est admin
     const group = groups.find(
-      g => g.name.trim() === groupName.trim() &&
-           g.members.some(m => m.userId === user.id && m.role === "admin")
+      g =>
+        g.name &&
+        g.name.trim() === groupName.trim() &&
+        g.members &&
+        g.members.some(m => Number(m.userId) === Number(user.id) && m.role === "admin")
     );
 
     if (!group) {
@@ -46,10 +49,13 @@ const OutingForm = ({ groups, onSuccess }) => {
     try {
       const res = await axios.post(
         "http://localhost:3000/createOuting",
-        { groupId: group.id, outingName, totalAmount: parseFloat(totalAmount) },
+        {
+          groupName: group.name, // send groupName, not groupId
+          outingName,
+          total: parseFloat(totalAmount) // send as 'total'
+        },
         { withCredentials: true }
       );
-      
 
       setSuccess(res.data.message);
       setGroupName("");

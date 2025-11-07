@@ -4,14 +4,14 @@ import axios from "axios";
 const OutingsListModal = ({ open, onClose, group }) => {
     const [outings, setOutings] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    
     useEffect(() => {
         if (!open || !group) return;
         setLoading(true);
         axios
-            .get(`http://localhost:3000/getOutings/${group.groupId}`)
+            .get(`http://localhost:3000/groupOutings/${group.groupName}`)
             .then((res) => {
-                setOutings(res.data.outings || []);
+                setOutings(res.data || []); // The API returns an array directly
                 setLoading(false);
             })
             .catch(() => {
@@ -47,7 +47,7 @@ const OutingsListModal = ({ open, onClose, group }) => {
                                     {outing.members && outing.members.length > 0 ? (
                                         outing.members.map((member, mIdx) => (
                                             <li key={mIdx}>
-                                                Utilisateur {member.userId} : {member.amountSpent} €
+                                                {member.name} : {member.spent} €
                                             </li>
                                         ))
                                     ) : (

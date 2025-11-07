@@ -121,5 +121,137 @@
     "username": "sk0302044",
     "password": "$2b$10$id5xujpcIiDbNekCzkpp/.oJwdSpHD0vbA4Nfm7DXHOBTfI20C3Pm",
     "group": []
+  },
+  {
+    "id": 11,
+    "firstName": "deaz",
+    "lastName": "KASSIM",
+    "dateOfBirth": "03/02/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "dk030204",
+    "password": "$2b$10$8jSiMoyfyYO8juFfAex3CejoxpIq3yxcywD.YtIqALswTB9eTqSLi",
+    "group": []
+  },
+  {
+    "id": 12,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "02/03/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk020304",
+    "password": "$2b$10$1lvSwNutN7cMvVneTyHHvOhWPzTL.mv2nIiBm2NVCWbTCQI7wtd3G",
+    "group": []
+  },
+  {
+    "id": 13,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "03/02/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk0302045",
+    "password": "$2b$10$TTIjb4rvEFYW4uWx68WQR.kS/7XKZVKBdsatjXc32A/ti.wmEEQGe",
+    "group": []
+  },
+  {
+    "id": 14,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "02/03/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk0203041",
+    "password": "$2b$10$/7Ym23kURZCg9yp671nk0ujU37WBuLQI0oXeQO7n11bv1ECmIdn.C",
+    "group": []
+  },
+  {
+    "id": 15,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "03/02/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk0302046",
+    "password": "$2b$10$7SNIOy/W6qPFvvsXjlSjBO5M6vZesRfQF8cKNEnx57HlLVhJkARDW",
+    "group": []
+  },
+  {
+    "id": 16,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "03/02/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk0302047",
+    "password": "$2b$10$EqPh/4/xZsvt/6vEaQakhOhuTygdVPUGG2zphAwMNvXWh3a2qKa3a",
+    "group": []
+  },
+  {
+    "id": 17,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "03/02/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk0302048",
+    "password": "$2b$10$7./x.7LXRp6wDD3d0C67A.F3nSNQ1Yw4zVxSrj53Mh0VcdQg/t/Sm",
+    "group": []
+  },
+  {
+    "id": 18,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "03/02/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk0302049",
+    "password": "$2b$10$oylr1/dhD0KXemTB2lENpOTD1I8nk.fGnNCv0bK/1RcHLQ39sPcRq",
+    "group": []
+  },
+  {
+    "id": 19,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "02/03/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk0203042",
+    "password": "$2b$10$YcPPzHTqozuyFECBZV9Q3.oxw7fFuJYizAf4sHoTjy4d0ar2LGNli",
+    "group": []
+  },
+  {
+    "id": 20,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "02/03/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk0203043",
+    "password": "$2b$10$wnW6Yu0r9/.M/xuHXD9WFeTsgvUWc1aoRJyspJGhMTFoe4mBjd2gW",
+    "group": []
+  },
+  {
+    "id": 21,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "03/02/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk03020410",
+    "password": "$2b$10$qAcpyJ9OiutnWc2ea7.s4u0JxFOfCuNHkAFyigM0MKkXeg3QNOqM6",
+    "group": []
+  },
+  {
+    "id": 22,
+    "firstName": "Soulaimane",
+    "lastName": "KASSIM",
+    "dateOfBirth": "02/03/2004",
+    "city": "Calais",
+    "tel": "0782417247",
+    "username": "sk0203044",
+    "password": "$2b$10$BGiaeP5j.zN4ivnWEwB15Omylu0GtKUNw/gtl92yc4oJ0OUgpCm36",
+    "group": []
   }
 ]

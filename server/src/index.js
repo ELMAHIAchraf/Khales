@@ -213,6 +213,12 @@ app.post('/createGroup', (req, res) => {
         members: [
             { userId: creatorId, role: "admin" }
         ],
+        sorties: {
+            members: [
+                
+            ],
+            total: 0
+        },
         createdBy: creatorId,
         createdAt: new Date().toISOString()
     };
@@ -366,3 +372,58 @@ app.post('/logout', (req, res) => {
     res.clearCookie('user');
     res.status(200).json({ message: "Logged out successfully." });
 });
+
+app.post('/createOuting', (req, res) => {
+    const { groupName, outingName, total } = req.body;
+    const userCookie = req.cookies.user;
+  
+    if (!userCookie) return res.status(401).json({ error: "Non authentifié" });
+    const userId = JSON.parse(userCookie).id;
+  
+    const groupsPath = path.join(__dirname, '../db/groups.json');
+    let groups = [];
+    try {
+      groups = JSON.parse(fs.readFileSync(groupsPath, 'utf8'));
+    } catch (e) {
+      return res.status(500).json({ error: "Impossible de lire les groupes" });
+    }
+  
+    // Trouver le groupe
+    const group = groups.find(g => g.name === groupName);
+    if (!group) return res.status(404).json({ error: "Groupe non trouvé" });
+  
+    // Vérifier que l'utilisateur est admin
+    const member = group.members.find(m => m.userId === userId);
+    if (!member || member.role !== "admin") {
+      return res.status(403).json({ error: "Seul l'admin peut créer une sortie" });
+    }
+  
+    // Initialiser la section sorties si elle n'existe pas
+    if (!group.sorties) {
+      group.sorties = { members: [], total: 0 };
+    }
+  
+    // Vérifier nom unique de sortie
+    if (group.sorties.members.some(m => m.name === outingName)) {
+      return res.status(400).json({ error: "Nom de sortie déjà utilisé pour ce groupe" });
+    }
+  
+    // Créer la sortie
+    const newOutingMembers = group.members.map(m => ({
+      userId: m.userId,
+      participationArgent: m.role === "admin" ? "admin" : null,
+      status: "Unpaid"
+    }));
+  
+    group.sorties.members.push(...newOutingMembers);
+    group.sorties.total = total;
+  
+    // Sauvegarder les groupes
+    fs.writeFileSync(groupsPath, JSON.stringify(groups, null, 2));
+  
+    res.status(201).json({
+      message: "Sortie créée avec succès",
+      group
+    });
+  });
+  
